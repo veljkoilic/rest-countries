@@ -2,22 +2,40 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { mobile } from "../responsive";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios"
+import { addCountries, filterCountries } from "../redux/countrySlice";
+
 
 export const SearchAndFilter = () => {
+  const dispatch = useDispatch();
+  // const countries = useSelector((state) => state.countries.countries);
+  const search = (query) => {
+    if(query !== '')
+    axios.get(`https://restcountries.com/v3.1/name/${query}`).then(function (response) {
+      dispatch(addCountries(response.data))
+    });
+  };
   return (
     <Container>
       <InputContainer>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
-        <input type="text" placeholder="Search for a country..." />
+        <input
+          onChange={(e) => {
+            search(e.target.value);
+          }}
+          type="text"
+          placeholder="Search for a country..."
+        />
       </InputContainer>
       <SelectContainer>
-        <select name="region">
-          <option value="">Filter by Region</option>
-          <option value="">Africa</option>
-          <option value="">America</option>
-          <option value="">Asia</option>
-          <option value="">Europe</option>
-          <option value="">Oceania</option>
+        <select name="region" onChange={(e)=>{dispatch(filterCountries(e.target.value))}}>
+          <option>Filter by Region</option>
+          <option value="Africa">Africa</option>
+          <option value="Americas">Americas</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
         </select>
       </SelectContainer>
     </Container>
@@ -72,7 +90,7 @@ const SelectContainer = styled.div`
     background-color: transparent;
     color: var(--text-color);
     ${mobile({
-      width: "100%"
+      width: "100%",
     })}
     option {
       width: 100%;
