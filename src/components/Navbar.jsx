@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { switchTheme } from "../redux/themeSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon } from "@fortawesome/free-solid-svg-icons";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
+import { faMoon as faMoonFull } from "@fortawesome/free-solid-svg-icons";
+import { faMoon as faMoonEmpty } from "@fortawesome/free-regular-svg-icons";
 
 export const Navbar = () => {
   const colorMode = useSelector((state) => state.theme.theme);
@@ -12,7 +12,7 @@ export const Navbar = () => {
     <Container>
       <h1>Where in the world?</h1>
       <button style={{ textTransform: "capitalize" }} onClick={() => dispatch(switchTheme(!colorMode))}>
-        <FontAwesomeIcon icon={colorMode ? faSun : faMoon} /> {colorMode ? "light" : "dark"} Mode
+        <FontAwesomeIcon icon={colorMode ?  faMoonEmpty : faMoonFull} /> Dark Mode
       </button>
     </Container>
   );
@@ -25,7 +25,7 @@ const Container = styled.div`
   justify-content: space-between;
   padding: 5px 10%;
   h1 {
-    /* margin-top: 0; */
+    font-size: 18px;
   }
   button {
     text-transform: capitalize;
@@ -33,7 +33,7 @@ const Container = styled.div`
     border: none;
     background-color: transparent;
     font-weight: bolder;
-    font-size: 22px;
+    font-size: 16px;
     margin-top: 0;
     padding: 10px 20px;
     transition: 0.3s;
@@ -44,7 +44,7 @@ const Container = styled.div`
       transition: 0.1s;
     }
     svg {
-      margin-right: 10px;
+      margin-right: 4px;
     }
   }
 `;
