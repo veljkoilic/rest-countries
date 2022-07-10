@@ -5,13 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon as faMoonFull } from "@fortawesome/free-solid-svg-icons";
 import { faMoon as faMoonEmpty } from "@fortawesome/free-regular-svg-icons";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const colorMode = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
   return (
     <Container>
+      <Link className="link" to="/">
       <h1>Where in the world?</h1>
+      </Link>
       <button style={{ textTransform: "capitalize" }} onClick={() => dispatch(switchTheme(!colorMode))}>
         <FontAwesomeIcon icon={colorMode ?  faMoonEmpty : faMoonFull} /> Dark Mode
       </button>

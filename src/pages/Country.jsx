@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Country = () => {
   const navigate = useNavigate();
@@ -21,30 +22,54 @@ export const Country = () => {
           <Title>Germany</Title>
           <Top>
             <Left>
-              <span><span className="bold">Native Name:</span> Germy</span>
-              <span><span className="bold">Population:</span> 1.0000.000 </span>
-              <span><span className="bold">Region:</span> Europe</span>
-              <span><span className="bold">Sub Regioon:</span> Western Europe</span>
-              <span><span className="bold">Capital:</span> Berlin</span>
+              <span>
+                <span className="bold">Native Name:</span> Germy
+              </span>
+              <span>
+                <span className="bold">Population:</span> 1.0000.000{" "}
+              </span>
+              <span>
+                <span className="bold">Region:</span> Europe
+              </span>
+              <span>
+                <span className="bold">Sub Regioon:</span> Western Europe
+              </span>
+              <span>
+                <span className="bold">Capital:</span> Berlin
+              </span>
             </Left>
             <Right>
-              <span><span className="bold">Top Level Domain:</span> .de</span>
-              <span><span className="bold">Currencies:</span> Euro </span>
-              <span><span className="bold">Languages:</span> Dutch, French, German</span>
+              <span>
+                <span className="bold">Top Level Domain:</span> .de
+              </span>
+              <span>
+                <span className="bold">Currencies:</span> Euro{" "}
+              </span>
+              <span>
+                <span className="bold">Languages:</span> Dutch, French, German
+              </span>
             </Right>
           </Top>
           <Bottom>
-            <span><span className="bold">Border Countries:</span></span>
-            <BorderCountry>France</BorderCountry>
-            <BorderCountry>Austria</BorderCountry>
-            <BorderCountry>Poland</BorderCountry>
+            <span>
+              <span className="bold">Border Countries:</span>
+            </span>
+            <Link className="link" to={"/country/2"}>
+              <BorderCountry>France</BorderCountry>
+            </Link>
+            <Link className="link" to={"/country/2"}>
+              <BorderCountry>Austria</BorderCountry>
+            </Link>
+            <Link className="link" to={"/country/2"}>
+              <BorderCountry>Poland</BorderCountry>
+            </Link>
+
           </Bottom>
         </CountryInfo>
       </CountryWrap>
     </Container>
   );
 };
-
 
 const Container = styled.div`
   padding: 100px 5%;
@@ -68,8 +93,8 @@ const Back = styled.button`
 `;
 
 const CountryWrap = styled.div`
-display:flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 const Image = styled.img`
   width: 40%;
@@ -77,23 +102,22 @@ const Image = styled.img`
   flex: 1;
 `;
 const CountryInfo = styled.div`
-display: flex;
-flex-direction: column;
-flex: 1;
-.bold{
-  font-weight: bold;
-
-}
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  .bold {
+    font-weight: bold;
+  }
 `;
 const Title = styled.h1`
-margin-top: 50px;
+  margin-top: 50px;
 `;
 const Top = styled.div`
-display: flex;
-gap: 40px;
-span{
-  padding: 5px 0 ;
-}
+  display: flex;
+  gap: 40px;
+  span {
+    padding: 5px 0;
+  }
 `;
 const Left = styled.div`
   display: flex;
@@ -106,20 +130,20 @@ const Right = styled.div`
   justify-content: center;
 `;
 const Bottom = styled.div`
-margin-top: 20px;
-display: flex;
-align-items: center;
-gap: 20px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 `;
 const BorderCountry = styled.div`
-background-color: var(--elements-color);
-box-shadow: var(--shadow);
-padding: 5px 25px;
-border-radius: 5px;
-cursor: pointer;
-transition: 0.15s;
-&:hover{
+  background-color: var(--elements-color);
+  box-shadow: var(--shadow);
+  padding: 5px 25px;
+  border-radius: 5px;
+  cursor: pointer;
   transition: 0.15s;
-  transform: scale(1.08);
-}
+  &:hover {
+    transition: 0.15s;
+    transform: scale(1.08);
+  }
 `;
