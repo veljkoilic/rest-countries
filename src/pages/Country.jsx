@@ -30,7 +30,6 @@ export const Country = () => {
     try {
       axios.get(`https://restcountries.com/v3.1/name/${query}?fullText=true`).then(function (response) {
         dispatch(setCountry(response.data));
-        console.log(response.data);
       });
     } catch (err) {
       console.log(err);
