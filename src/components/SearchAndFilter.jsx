@@ -7,7 +7,7 @@ export const SearchAndFilter = () => {
     <Container>
       <InputContainer>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
-        <input type="text" />
+        <input type="text" placeholder="Search for a country..." />
       </InputContainer>
       <SelectContainer>
         <select name="region">
@@ -27,7 +27,6 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
-
 `;
 
 const InputContainer = styled.div`
@@ -52,18 +51,20 @@ const InputContainer = styled.div`
   }
 `;
 const SelectContainer = styled.div`
-display: flex;
-align-items: center;
-padding: 10px 20px;
-background-color: var(--elements-color);
-border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--elements-color);
+  border-radius: 5px;
+  box-shadow: var(--shadow);
 
   select {
     border: none;
     background-color: transparent;
-    option{
-        width: 100%;
-        padding: 10px 20px;
+    color: var(--text-color);
+    option {
+      width: 100%;
+      padding: 10px 20px;
     }
   }
 `;

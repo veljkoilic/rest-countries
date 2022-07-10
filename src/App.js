@@ -32,7 +32,8 @@ function App() {
 }
 const Container = styled.div`
 background-color: var(--bg-color);
-color: var(--text-color)
+color: var(--text-color);
+min-height: 100vh
 `;
 
 export default App;
