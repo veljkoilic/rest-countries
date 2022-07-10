@@ -151,7 +151,8 @@ const CountryWrap = styled.div`
   })}
 `;
 const Image = styled.img`
-  width: 35%;
+  height: 100%;
+  flex: 1;
   padding: 50px 100px 0 0;
   /* flex: 1; */
   ${tablet({
