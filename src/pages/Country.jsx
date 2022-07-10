@@ -21,20 +21,9 @@ export const Country = () => {
     if (country && country.borders) {
       axios.get(`https://restcountries.com/v3.1/alpha?codes=${country.borders.join(",")}`).then(function (response) {
         setborderCountries(response.data);
-        console.log(response.data);
       });
     }
   }, [country]);
-  // const visitNeighbour = (cca3) => {
-  //   try {
-  //     axios.get(`https://restcountries.com/v3.1/alpha/${cca3}`).then(function (response) {
-  //       navigate(`/country/${response.data[0].name.official}`);
-  //       dispatch(setCountry(response.data));
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
   useEffect(() => {
     try {
       axios.get(`https://restcountries.com/v3.1/name/${query}?fullText=true`).then(function (response) {
@@ -103,8 +92,6 @@ export const Country = () => {
             <Bottom>
               <span>
                 <span className="bold">Border Countries: {!country.borders && "None"}</span>
-
-                {/* na klik borderCountry, axios request za cca3 kod, on vraca full name, usenavigate na tu stranicu. */}
               </span>
               {borderCountries &&
                 borderCountries.map((c) => {
