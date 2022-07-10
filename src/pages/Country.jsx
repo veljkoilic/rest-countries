@@ -12,19 +12,31 @@ import { useEffect } from "react";
 
 export const Country = () => {
   const navigate = useNavigate();
-
+  const url = useParams()
   const dispatch = useDispatch();
   const country = useSelector((state) => state.countries.currentCountry)[0];
   const query = useParams().id;
-  useEffect(() => {
+
+  const visitNeighbour = (cca3) => {
     try {
-      axios.get(`https://restcountries.com/v3.1/name/${query}?fullText=true`).then(function (response) {
+      axios.get(`https://restcountries.com/v3.1/alpha/${cca3}`).then(function (response) {
+        navigate(`/country/${response.data[0].name.official}`);
         dispatch(setCountry(response.data));
       });
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  };
+  useEffect(() => {
+    try {
+      axios.get(`https://restcountries.com/v3.1/name/${query}?fullText=true`).then(function (response) {
+        dispatch(setCountry(response.data));
+        console.log(response.data);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, [url]);
   let currencies = [];
   let languages = [];
   let nativeNames = [];
@@ -39,15 +51,10 @@ export const Country = () => {
       nativeNames.push(`${country.name.nativeName[key].official}`);
     }
   }
-  console.log(country);
   if (country) {
     return (
       <Container>
-        <Back
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
+        <Back onClick={() => navigate(-1)}>
           <FontAwesomeIcon icon={faArrowLeft} />
           Back
         </Back>
@@ -89,13 +96,20 @@ export const Country = () => {
             <Bottom>
               <span>
                 <span className="bold">Border Countries: {!country.borders && "None"}</span>
+
+                {/* na klik borderCountry, axios request za cca3 kod, on vraca full name, usenavigate na tu stranicu. */}
               </span>
               {country.borders &&
                 country.borders.map((c) => {
                   return (
-                    <Link className="link" to={"/country/"}>
-                      <BorderCountry>{c}</BorderCountry>
-                    </Link>
+                    <BorderCountry
+                      key={c}
+                      onClick={() => {
+                        visitNeighbour(c);
+                      }}
+                    >
+                      {c}
+                    </BorderCountry>
                   );
                 })}
             </Bottom>
@@ -189,7 +203,7 @@ const Bottom = styled.div`
   margin-top: 20px;
   display: flex;
   align-items: center;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   gap: 20px;
   ${tablet({
     flexDirection: "column",
