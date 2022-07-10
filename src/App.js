@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {} from "react-router";
 import { Navbar } from "./components/Navbar";
 import { Home } from "./pages/Home";
 import { Country } from "./pages/Country";

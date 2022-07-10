@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { CountryCard } from "../components/CountryCard";
 import { SearchAndFilter } from "../components/SearchAndFilter";
 import { laptop, mobile, tablet } from "../responsive";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { addCountries, filterCountries } from "../redux/countrySlice";
+import { addCountries } from "../redux/countrySlice";
 
 export const Home = () => {
   const dispatch = useDispatch();
