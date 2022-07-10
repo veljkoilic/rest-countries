@@ -24,6 +24,8 @@ export const Home = () => {
 
 const Container = styled.div`
   padding: 5px 5%;
+  padding-bottom: 100px;
+
 `;
 
 const CountryCardWrapper = styled.div`

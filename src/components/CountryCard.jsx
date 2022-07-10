@@ -9,7 +9,7 @@ export const CountryCard = () => {
         <Name>Germany</Name>
         <Population>Population: 81.770.900</Population>
         <Region>Region: Europe</Region>
-        <Capital>Population: 81.770.900</Capital>
+        <Capital>Capital: Berlin</Capital>
       </Info>
     </Container>
   );
@@ -21,6 +21,12 @@ const Container = styled.div`
   box-shadow: var(--shadow);
   width: 80%;
   margin: 0 auto;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover{
+    transition: 0.3s;
+    transform: scale(1.08);
+  }
 `;
 const Image = styled.img`
 width: 100%;

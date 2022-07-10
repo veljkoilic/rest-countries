@@ -4,6 +4,7 @@ import { switchTheme } from "../redux/themeSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon as faMoonFull } from "@fortawesome/free-solid-svg-icons";
 import { faMoon as faMoonEmpty } from "@fortawesome/free-regular-svg-icons";
+import { mobile } from "../responsive";
 
 export const Navbar = () => {
   const colorMode = useSelector((state) => state.theme.theme);
@@ -26,6 +27,10 @@ const Container = styled.div`
   padding: 5px 5%;
   h1 {
     font-size: 18px;
+    ${mobile({
+      fontSize: "14px"
+
+    })}
   }
   button {
     text-transform: capitalize;
