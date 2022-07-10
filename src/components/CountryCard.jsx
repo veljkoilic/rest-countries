@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const CountryCard = () => {
+export const CountryCard = ({country}) => {
   return (
     <Container>
-      <Link className="link" to={"/country/1"}>
-        <Image src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" />
+      <Link className="link" to={`/country/${country.name.official}`}>
+        <Image src={country.flags.png} />
         <Info>
-          <Name>Germany</Name>
-          <Population>Population: 81.770.900</Population>
-          <Region>Region: Europe</Region>
-          <Capital>Capital: Berlin</Capital>
+          <Name>{country.name.common}</Name>
+          <Population>Population: {country.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Population>
+          <Region>Region: {country.region}</Region>
+          <Capital>Capital: {country.subregion}</Capital>
         </Info>
       </Link>
     </Container>
@@ -32,7 +32,9 @@ const Container = styled.div`
   }
 `;
 const Image = styled.img`
+  height: 200px;
   width: 100%;
+  object-fit: cover;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 `;
