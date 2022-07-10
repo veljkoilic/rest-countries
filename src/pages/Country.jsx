@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { tablet } from "../responsive";
 
 export const Country = () => {
   const navigate = useNavigate();
@@ -63,7 +64,6 @@ export const Country = () => {
             <Link className="link" to={"/country/2"}>
               <BorderCountry>Poland</BorderCountry>
             </Link>
-
           </Bottom>
         </CountryInfo>
       </CountryWrap>
@@ -95,16 +95,27 @@ const Back = styled.button`
 const CountryWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  ${tablet({
+    flexDirection: "column",
+    alignItems: "center",
+  })}
 `;
 const Image = styled.img`
   width: 40%;
   padding: 50px 100px 0 0;
   flex: 1;
+  ${tablet({
+    paddingRight: 0,
+    width: "80%"
+  })}
 `;
 const CountryInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  ${tablet({
+    width: "80%",
+  })}
   .bold {
     font-weight: bold;
   }
@@ -115,6 +126,10 @@ const Title = styled.h1`
 const Top = styled.div`
   display: flex;
   gap: 40px;
+  ${tablet({
+    flexDirection: "column",
+    width: "80%",
+  })}
   span {
     padding: 5px 0;
   }
@@ -134,6 +149,10 @@ const Bottom = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  ${tablet({
+    flexDirection: "column",
+    alignItems: "flex-start"
+  })}
 `;
 const BorderCountry = styled.div`
   background-color: var(--elements-color);
