@@ -95,6 +95,8 @@ const SelectContainer = styled.div`
     option {
       width: 100%;
       padding: 10px 20px;
+      background-color: var(--elements-color);
+      border: none;
     }
   }
 `;
