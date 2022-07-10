@@ -3,29 +3,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { tablet } from "../responsive";
-
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { setCountry } from "../redux/countrySlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const Country = () => {
   const navigate = useNavigate();
-  const url = useParams()
+  const url = useParams();
   const dispatch = useDispatch();
   const country = useSelector((state) => state.countries.currentCountry)[0];
   const query = useParams().id;
 
-  const visitNeighbour = (cca3) => {
-    try {
-      axios.get(`https://restcountries.com/v3.1/alpha/${cca3}`).then(function (response) {
-        navigate(`/country/${response.data[0].name.official}`);
-        dispatch(setCountry(response.data));
+  const [borderCountries, setborderCountries] = useState([]);
+  useEffect(() => {
+    if (country && country.borders) {
+      axios.get(`https://restcountries.com/v3.1/alpha?codes=${country.borders.join(",")}`).then(function (response) {
+        setborderCountries(response.data);
+        console.log(response.data);
       });
-    } catch (err) {
-      console.log(err);
     }
-  };
+  }, [country]);
+  // const visitNeighbour = (cca3) => {
+  //   try {
+  //     axios.get(`https://restcountries.com/v3.1/alpha/${cca3}`).then(function (response) {
+  //       navigate(`/country/${response.data[0].name.official}`);
+  //       dispatch(setCountry(response.data));
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   useEffect(() => {
     try {
       axios.get(`https://restcountries.com/v3.1/name/${query}?fullText=true`).then(function (response) {
@@ -97,17 +106,12 @@ export const Country = () => {
 
                 {/* na klik borderCountry, axios request za cca3 kod, on vraca full name, usenavigate na tu stranicu. */}
               </span>
-              {country.borders &&
-                country.borders.map((c) => {
+              {borderCountries &&
+                borderCountries.map((c) => {
                   return (
-                    <BorderCountry
-                      key={c}
-                      onClick={() => {
-                        visitNeighbour(c);
-                      }}
-                    >
-                      {c}
-                    </BorderCountry>
+                    <Link className="link" key={c.name.official} to={`/country/${c.name.official}`}>
+                      <BorderCountry>{c.name.official}</BorderCountry>
+                    </Link>
                   );
                 })}
             </Bottom>
