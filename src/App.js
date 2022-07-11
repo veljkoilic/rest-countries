@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App" color-mode={colorMode ? "light" : "dark"}>
       <Container>
-        <BrowserRouter>
+        <BrowserRouter basename="/rest-countries-app">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
