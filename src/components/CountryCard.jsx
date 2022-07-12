@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const CountryCard = ({country}) => {
+export const CountryCard = ({ country }) => {
   return (
     <Container>
       <Link className="link" to={`/country/${country.name.official}`}>
-        <Image src={country.flags.png} />
+        <Image src={country.flags.png} alt={country.name.official} />
         <Info>
           <Name>{country.name.common}</Name>
           <Population>Population: {country.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Population>

@@ -55,7 +55,7 @@ export const Country = () => {
           Back
         </Back>
         <CountryWrap>
-          <Image src={country.flags.png} />
+          <Image src={country.flags.png} alt={country.name.official}/>
           <CountryInfo>
             <Title>{country.name.official}</Title>
             <Top>
